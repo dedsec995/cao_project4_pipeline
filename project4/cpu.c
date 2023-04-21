@@ -83,9 +83,9 @@ print_registers_cycle(CPU *cpu){
     printf("Clock Cycle #: %d\n", cpu->clock);
     printf("--------------------------------\n");
 
-   for (int reg=0; reg<REG_SIZE; reg++) {
+   for (int reg=0; reg<REG_COUNT; reg++) {
        
-        printf("REG[%2d]   |   Value=%d  \n",reg,cpu->registers[reg].value);
+        printf("REG[%2d]   |   Value=%d  \n",reg,cpu->regs[reg].value);
         printf("--------------------------------\n");
     }
     printf("\n");
@@ -109,6 +109,26 @@ void print_pt(CPU *cpu){
     for (int i=0;i<BTB_COUNT; i++){
         printf("|	 PT[%2d]	|  Pattern=%d   |\n", i,cpu->pt[i].pattern);
     }
+}
+
+/*
+ * This function read the file and add the data to string array 
+ */
+void
+load_the_instructions(CPU *cpu){
+    FILE *filePointer = fopen(cpu->filename, "r");
+    int county = 0;
+    if (filePointer == NULL)
+    {
+        printf("Error: could not open file %s", cpu->filename);
+    }
+    char buffer[MAXY_LENGHT];
+    while (fgets(buffer, MAXY_LENGHT, filePointer)){
+        strcpy(cpu->instructions[county],buffer);
+        county++;
+    }
+    cpu->instructionLength = county ;
+    fclose(filePointer);
 }
 
 int load_the_memory(){
@@ -274,7 +294,6 @@ void simulate(CPU* cpu){
     int last_inst = 0;
     for(;;){
         if(writeback_unit(cpu)){
-            print_display(cpu);
             break;
         }
         memory2_unit(cpu);
@@ -292,20 +311,18 @@ void simulate(CPU* cpu){
             print_btb(cpu);
             print_pt(cpu);
         }
-        print_display(cpu);
         cpu->clock++;
         cpu->fetch_latch.has_inst = 1;  
         // Safty Termination
-        // if(cpu->clock > 22000){
-        //     return;
-        // }
+        if(cpu->clock > 600){
+            return;
+        }
         if(strcmp(options,"pipeline") == 0){
             printf("\n================================");
             printf("\nClock Cycle #: %d\n",cpu->clock);
             printf("--------------------------------\n");
         }
     }
-    // print_display(cpu);
     if(strcmp(options,"pipeline") == 0){
     printf("\n================================\n");
     }
