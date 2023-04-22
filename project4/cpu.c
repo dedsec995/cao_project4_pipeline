@@ -14,10 +14,11 @@
 #define MAXY_LENGHT 512
 #define MEMORY_MAP_LENGTH 16384
 long memory_map_val[MEMORY_MAP_LENGTH] = {0};
-char* options;
+
+const char* print_pipeline;
  
 CPU*
-CPU_init(char* filename, char* option)
+CPU_init(char* filename)
 {
     CPU* cpu = malloc(sizeof(*cpu));
     if(!filename){
@@ -43,8 +44,8 @@ CPU_init(char* filename, char* option)
     cpu->raw = 0;
     cpu->reverse_branch = 0;
     cpu->executedInstruction = 0;
-    options = option;
     make_memory_map();
+    print_pipeline = getenv("PRINT_PIPELINE");
 
     return cpu;
 }
@@ -284,14 +285,15 @@ freed_registers(CPU* cpu,int size){
 *The Main Pipeline Implementation
 */ 
 void simulate(CPU* cpu){
-    if(strcmp(options,"pipeline") == 0){
-        printf("================================");
-        printf("\nClock Cycle #: %d\n",cpu->clock);
-        printf("--------------------------------\n");
+    // The print statement to print logs
+    if (print_pipeline != NULL){
+        if(atoi(print_pipeline) == 1){
+            printf("================================");
+            printf("\nClock Cycle #: %d\n",cpu->clock);
+            printf("--------------------------------\n");
+        }
     }
-
-    load_the_memory();
-    int last_inst = 0;
+    load_the_memory(); // Load Memmory Map into Array
     for(;;){
         if(writeback_unit(cpu)){
             break;
@@ -307,9 +309,11 @@ void simulate(CPU* cpu){
         decode_unit(cpu); 
         fetch_unit(cpu);
         clear_forwarding(cpu);
-        if(strcmp(options,"pipeline") == 0){
-            print_btb(cpu);
-            print_pt(cpu);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                print_btb(cpu);
+                print_pt(cpu);
+            }
         }
         cpu->clock++;
         cpu->fetch_latch.has_inst = 1;  
@@ -317,14 +321,18 @@ void simulate(CPU* cpu){
         if(cpu->clock > 600){
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("\n================================");
-            printf("\nClock Cycle #: %d\n",cpu->clock);
-            printf("--------------------------------\n");
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("\n================================");
+                printf("\nClock Cycle #: %d\n",cpu->clock);
+                printf("--------------------------------\n");
+            }
         }
     }
-    if(strcmp(options,"pipeline") == 0){
-    printf("\n================================\n");
+    if (print_pipeline != NULL){ // The print statement to print logs
+        if(atoi(print_pipeline) == 1){
+            printf("\n================================\n");
+        }
     }
     //TODO Loop Or recursion?
     // Create Struct or F!!!
@@ -333,8 +341,10 @@ void simulate(CPU* cpu){
 
 int writeback_unit(CPU* cpu){
     if(cpu->writeback_latch.has_inst == 1 && cpu->writeback_latch.halt_triggered==0){
-        if(strcmp(options,"pipeline") == 0){
-            printf("WB             : %s",cpu->instructions[cpu->writeback_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("WB             : %s",cpu->instructions[cpu->writeback_latch.pc]);
+            }
         }
         cpu->executedInstruction++;
         if(strcmp(cpu->writeback_latch.opcode,"ret") == 0){
@@ -369,8 +379,10 @@ void memory2_unit(CPU* cpu){
             cpu->writeback_latch = cpu->memory2_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("Mem2           : %s",cpu->instructions[cpu->memory2_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("Mem2           : %s",cpu->instructions[cpu->memory2_latch.pc]);
+            }
         }
         if (strcmp(cpu->memory2_latch.opcode,"ld")==0){
             if (cpu->memory2_latch.or1[0] == 82){
@@ -404,8 +416,10 @@ void memory1_unit(CPU* cpu){
             cpu->memory2_latch = cpu->memory1_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("Mem1           : %s",cpu->instructions[cpu->memory1_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("Mem1           : %s",cpu->instructions[cpu->memory1_latch.pc]);
+            }
         }
         if(strcmp(cpu->memory1_latch.opcode,"add") == 0 || strcmp(cpu->memory1_latch.opcode,"sub") == 0 || strcmp(cpu->memory1_latch.opcode,"set") == 0 || strcmp(cpu->memory1_latch.opcode,"mul") == 0 || strcmp(cpu->memory1_latch.opcode,"div") == 0){
             strcpy(cpu->mem1_reg,cpu->memory1_latch.rg1);
@@ -431,8 +445,10 @@ void branch_unit(CPU* cpu){
             cpu->memory1_latch = cpu->branch_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("BR             : %s",cpu->instructions[cpu->branch_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("BR             : %s",cpu->instructions[cpu->branch_latch.pc]);
+            }
         }
         // printf("Register: %d\n", cpu->branch_latch.rg1_val);
         if(strcmp(cpu->branch_latch.opcode,"ret") == 0){
@@ -866,8 +882,10 @@ void divider_unit(CPU* cpu){
             cpu->branch_latch = cpu->divider_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("DIV            : %s",cpu->instructions[cpu->divider_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("DIV            : %s",cpu->instructions[cpu->divider_latch.pc]);
+            }
         }
         if(strcmp(cpu->divider_latch.opcode,"ret") == 0){
             cpu->branch_latch=cpu->divider_latch;
@@ -909,8 +927,10 @@ void multiplier_unit(CPU* cpu){
             cpu->divider_latch = cpu->multiplier_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("MUL            : %s",cpu->instructions[cpu->multiplier_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("MUL            : %s",cpu->instructions[cpu->multiplier_latch.pc]);
+            }
         }
         if(strcmp(cpu->multiplier_latch.opcode,"ret") == 0){
             cpu->divider_latch=cpu->multiplier_latch;
@@ -952,8 +972,10 @@ void adder_unit(CPU* cpu){
             cpu->multiplier_latch = cpu->adder_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("ADD            : %s",cpu->instructions[cpu->adder_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("ADD            : %s",cpu->instructions[cpu->adder_latch.pc]);
+            }
         }
         if(strcmp(cpu->adder_latch.opcode,"ret") == 0){
             cpu->multiplier_latch=cpu->adder_latch;
@@ -1032,8 +1054,10 @@ void  register_read_unit(CPU* cpu){
             cpu->adder_latch = cpu->register_read_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("RR             : %s",cpu->instructions[cpu->register_read_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("RR             : %s",cpu->instructions[cpu->register_read_latch.pc]);
+            }
         }
         if(strcmp(cpu->register_read_latch.opcode,"ret") == 0){
             cpu->adder_latch=cpu->register_read_latch;
@@ -1209,8 +1233,10 @@ void  register_read_unit(CPU* cpu){
         int frw2 = 0;
         // printf("RR Halted\n");
         cpu->hazard++;
-        if(strcmp(options,"pipeline") == 0){
-            printf("RR             : %s",cpu->instructions[cpu->register_read_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("RR             : %s",cpu->instructions[cpu->register_read_latch.pc]);
+            }
         }
         if (cpu->register_read_latch.or1[0] == 82){   // Check if operand is register?
             strcpy(cpu->register_read_latch.rg2,cpu->register_read_latch.or1);
@@ -1439,8 +1465,10 @@ void analysis_unit(CPU* cpu){
             cpu->register_read_latch = cpu->analysis_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("IA             : %s",cpu->instructions[cpu->analysis_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("IA             : %s",cpu->instructions[cpu->analysis_latch.pc]);
+            }
         }
         if(strcmp(cpu->analysis_latch.opcode,"ret") == 0){
             cpu->register_read_latch=cpu->analysis_latch;
@@ -1449,8 +1477,10 @@ void analysis_unit(CPU* cpu){
         cpu->register_read_latch=cpu->analysis_latch;
     }
     else if(cpu->analysis_latch.has_inst == 1 && cpu->analysis_latch.halt_triggered==1){
-        if(strcmp(options,"pipeline") == 0){
-            printf("IA             : %s",cpu->instructions[cpu->analysis_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("IA             : %s",cpu->instructions[cpu->analysis_latch.pc]);
+            }
         }
     }
 }
@@ -1461,8 +1491,10 @@ void decode_unit(CPU* cpu){
             cpu->analysis_latch = cpu->decode_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("ID             : %s",cpu->instructions[cpu->decode_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("ID             : %s",cpu->instructions[cpu->decode_latch.pc]);
+            }
         }
         if(strcmp(cpu->decode_latch.opcode,"ret") == 0){
             cpu->analysis_latch = cpu->decode_latch;
@@ -1471,8 +1503,10 @@ void decode_unit(CPU* cpu){
         cpu->analysis_latch = cpu->decode_latch;
     }
     else if (cpu->decode_latch.has_inst == 1 && cpu->decode_latch.halt_triggered==1){
-        if(strcmp(options,"pipeline") == 0){
-            printf("ID             : %s",cpu->instructions[cpu->decode_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("ID             : %s",cpu->instructions[cpu->decode_latch.pc]);
+            }
         }
     }
 }
@@ -1487,8 +1521,10 @@ void fetch_unit(CPU* cpu){
             cpu->decode_latch = cpu->fetch_latch;
             return;
         }
-        if(strcmp(options,"pipeline") == 0){
-            printf("IF             : %s",cpu->instructions[cpu->fetch_latch.pc]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("IF             : %s",cpu->instructions[cpu->fetch_latch.pc]);
+            }
         }
         strcpy(str1,cpu->instructions[cpu->fetch_latch.pc]);
 
@@ -1631,8 +1667,10 @@ void fetch_unit(CPU* cpu){
         cpu->decode_latch = cpu->fetch_latch;
     }
     else if (cpu->fetch_latch.has_inst == 1 && cpu->fetch_latch.halt_triggered == 1){
-        if(strcmp(options,"pipeline") == 0){
-            printf("(s)IF          : %s",cpu->instructions[cpu->fetch_latch.pc+1]);
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("(s)IF          : %s",cpu->instructions[cpu->fetch_latch.pc+1]);
+            }
         }
     }
 }

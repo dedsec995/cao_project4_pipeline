@@ -100,7 +100,7 @@ typedef struct CPU
 
 
 CPU*
-CPU_init(char* filename, char* option);
+CPU_init(char* filename);
 
 Register*
 create_registers(int size);
