@@ -34,6 +34,7 @@ typedef struct Stages
 	int instAddr; // Instruction what??
 	int instLen; // Current Instruction Length
 	char opcode[128]; // Opcode
+	char rm[20]; // Renamed Register
 	char rg1[20]; // Register 1
 	char rg2[20]; // Register 2
 	char rg3[20]; // Register 3
@@ -54,7 +55,7 @@ typedef struct CPU
 {
 	/* Integer register file */
 	Register *regs;	// The registers
-	Btb *btb;
+	Btb *btb; // The Branch Target Buffer
 	Pt *pt;
 	char* filename; // File to be read
 	char instructions[NO_OF_LINE][MAX_LENGTH]; // Instructions Char array
@@ -63,25 +64,28 @@ typedef struct CPU
 	float ipc; // Instructions per cycle
 	int pc; // Program Counter
 	int clock; // Total Cycle Completed
-	char mem1_reg[20];
-	int mem1_val;
-	char br_reg[20];
-	int br_val;
-	char div_reg[20];
-	int div_val;
-	char mul_reg[20];
-	int mul_val;
-	char add_reg[20];
-	int add_val;
-	int raw;
-	char freedit[20];
-	int reverse_branch;
-	int executedInstruction;
+	char mem1_reg[20]; // Save forwarded value from Mem1
+	int mem1_val; // Save forwarded value from Mem1
+	char br_reg[20]; // Save forwarded value from BR
+	int br_val; // Save forwarded value from BR
+	char div_reg[20]; // Save forwarded value from DIV
+	int div_val; // Save forwarded value from DIV
+	char mul_reg[20]; // Save forwarded value from MUL
+	int mul_val; // Save forwarded value from MUL
+	char add_reg[20]; // Save forwarded value from ADD
+	int add_val; // Save forwarded value from ADD
+	int raw; // Read After Write
+	char freedit[20]; // Which REG was freed??
+	int reverse_branch; // Not branch as BR has Squashed THE pipeline
+	int executed_instruction; // Executed Instruction Counter
+	int reserve_count; // Counter for Reverse Station
 
 	// The Pipeline
 	Stages fetch_latch; 
 	Stages decode_latch;
 	Stages analysis_latch;
+	Stages reserve_station[20];
+	Stages instruction_rename_latch;
 	Stages register_read_latch;
 	Stages adder_latch;
 	Stages multiplier_latch;
@@ -127,6 +131,12 @@ void
 simulate(CPU* cpu);
 
 void 
+super_scalar(CPU* cpu);
+
+void
+reserve_station_buff(CPU* cpu);
+
+void 
 fetch_unit(CPU* cpu);
 
 void 
@@ -136,28 +146,46 @@ void
 analysis_unit(CPU* cpu);
 
 void 
-register_read_unit(CPU* cpu);
+instruction_rename_unit(CPU* cpu);
+
+void 
+issue_unit(CPU* cpu);
+
+void 
+divider1_unit(CPU* cpu)
+
+void 
+divider2_unit(CPU* cpu)
+
+void 
+multiplier1_unit(CPU* cpu);
+
+void 
+divider3_unit(CPU* cpu)
+
+void 
+multiplie2_unit(CPU* cpu);
 
 void 
 adder_unit(CPU* cpu);
 
-void 
-multiplier_unit(CPU* cpu);
+void
+writeback1_unit(CPU* cpu);
 
-void 
-divider_unit(CPU* cpu);
+void
+writeback2_unit(CPU* cpu);
 
-void 
-branch_unit(CPU* cpu);
+void
+writeback3_unit(CPU* cpu);
 
-void 
-memory1_unit(CPU* cpu);
+void
+writeback4_unit(CPU* cpu);
 
-void 
-memory2_unit(CPU* cpu);
+void
+reorder1_unit(CPU* cpu);
 
-int
-writeback_unit(CPU* cpu);
+void
+reorder2_unit(CPU* cpu);
 
 void
 clear_forwarding(CPU* cpu);

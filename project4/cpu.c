@@ -35,18 +35,19 @@ CPU_init(char* filename)
     cpu->filename = filename;
     cpu->fetch_latch.has_inst = 1;
     cpu->fetch_latch.halt_triggered = 0;
-    cpu->register_read_latch.unfreeze = 0;
-    cpu->analysis_latch.unfreeze = 0;
-    cpu->decode_latch.unfreeze = 0;
+    // cpu->register_read_latch.unfreeze = 0;
+    // cpu->analysis_latch.unfreeze = 0;
+    // cpu->decode_latch.unfreeze = 0;
     cpu->fetch_latch.unfreeze = 0;
     cpu->clock = 1;
     cpu->pc = 0;
     cpu->raw = 0;
     cpu->reverse_branch = 0;
-    cpu->executedInstruction = 0;
+    cpu->executed_instruction = 0;
+    cpu->reserve_count = -1;
     make_memory_map();
     print_pipeline = getenv("PRINT_PIPELINE");
-
+    strcpy(cpu->reserve_station[0].opcode,"none");
     return cpu;
 }
 
@@ -77,6 +78,12 @@ print_registers(CPU *cpu){
     }
     printf("================================\n\n");
 }
+
+/*
+ * This function prints the content of the registers per cycle.
+ */
+
+//  dedsec995
 
 void 
 print_registers_cycle(CPU *cpu){
@@ -196,6 +203,10 @@ int write_the_memory(long val,int num){
     return (-1);
 }
 
+/*
+ *  Get the tag using PC
+ */
+
 int get_tag(long num){
     long long bin = 0;
     int rem, q = 1;
@@ -219,19 +230,19 @@ int get_tag(long num){
 }
 
 /*
- *  CPU CPU simulation loop
+ *  CPU simulation loop
  */
 int
 CPU_run(CPU* cpu)
 {
     load_the_instructions(cpu);
     cpu->hazard = 0;
-    simulate(cpu);
+    super_scalar(cpu);
     print_registers(cpu);
-    cpu->ipc = (double)cpu->executedInstruction/(double)cpu->clock;
+    cpu->ipc = (double)cpu->executed_instruction/(double)cpu->clock;
     printf("Stalled cycles due to data hazard: %d\n", cpu->hazard);
     printf("Total execution cycles: %d\n",cpu->clock);
-    printf("Total instruction simulated: %d\n", cpu->executedInstruction);
+    printf("Total instruction simulated: %d\n", cpu->executed_instruction);
     printf("IPC: %6f\n",cpu->ipc);
     return 0;
 }
@@ -274,17 +285,11 @@ create_pt(int size){
     return pt;
 }
 
-void
-freed_registers(CPU* cpu,int size){
-    for (int i=0; i<size; i++){
-        cpu->regs[i].freed_this_cycle = 0;
-    }
-}
 
 /*
-*The Main Pipeline Implementation
-*/ 
-void simulate(CPU* cpu){
+ *  The SuperScalar pipeline Implementation
+ */ 
+void super_scalar(CPU* cpu){
     // The print statement to print logs
     if (print_pipeline != NULL){
         if(atoi(print_pipeline) == 1){
@@ -295,30 +300,43 @@ void simulate(CPU* cpu){
     }
     load_the_memory(); // Load Memmory Map into Array
     for(;;){
-        if(writeback_unit(cpu)){
-            break;
-        }
+        // if(writeback_unit(cpu)){
+        //     break;
+        // }
+        reorder2_unit(cpu);
+        reorder1_unit(cpu);
+        writeback4_unit(cpu);
+        writeback3_unit(cpu);
+        writeback2_unit(cpu);
+        writeback1_unit(cpu);
+        adder_unit(cpu);
+        multiplier2_unit(cpu);
+        divider3_unit(cpu);
+        memory4_unit(cpu);
+        multiplier1_unit(cpu);
+        divider2_unit(cpu);
+        memory3_unit(cpu);
+        divider1_unit(cpu);
         memory2_unit(cpu);
-        memory1_unit(cpu); 
-        branch_unit(cpu); 
-        divider_unit(cpu); 
-        multiplier_unit(cpu);
-        adder_unit(cpu); 
-        register_read_unit(cpu); 
+        memory1_unit(cpu);
+        issue_unit(cpu);
+        instruction_rename_unit(cpu);
         analysis_unit(cpu); 
         decode_unit(cpu); 
         fetch_unit(cpu);
+        reserve_station_buff(cpu);
+        reorder_buff(cpu);
         clear_forwarding(cpu);
         if (print_pipeline != NULL){ // The print statement to print logs
             if(atoi(print_pipeline) == 1){
-                print_btb(cpu);
-                print_pt(cpu);
+                // print_btb(cpu);
+                // print_pt(cpu);
             }
         }
         cpu->clock++;
         cpu->fetch_latch.has_inst = 1;  
         // Safty Termination
-        if(cpu->clock > 600){
+        if(cpu->clock > 200){
             return;
         }
         if (print_pipeline != NULL){ // The print statement to print logs
@@ -339,39 +357,70 @@ void simulate(CPU* cpu){
     // printf("Hahaha");
 }
 
-int writeback_unit(CPU* cpu){
-    if(cpu->writeback_latch.has_inst == 1 && cpu->writeback_latch.halt_triggered==0){
-        if (print_pipeline != NULL){ // The print statement to print logs
-            if(atoi(print_pipeline) == 1){
-                printf("WB             : %s",cpu->instructions[cpu->writeback_latch.pc]);
-            }
+void writeback4_unit(CPU* cpu){
+    if (print_pipeline != NULL){ // The print statement to print logs
+        if(atoi(print_pipeline) == 1){
+            printf("| WB   : \t",);
         }
-        cpu->executedInstruction++;
-        if(strcmp(cpu->writeback_latch.opcode,"ret") == 0){
-            cpu->writeback_latch.has_inst = 0;
-            return(1);
-        }
-        else if(strcmp(cpu->writeback_latch.opcode,"st") == 0){
-            return(0);
-        }
-        if(strcmp(cpu->writeback_latch.opcode,"bez") == 0 || strcmp(cpu->writeback_latch.opcode,"bgez") == 0 || strcmp(cpu->writeback_latch.opcode,"blez") == 0 | strcmp(cpu->writeback_latch.opcode,"bgtz") == 0 || strcmp(cpu->writeback_latch.opcode,"bltz") == 0){}
-        else{
-            cpu->regs[atoi(cpu->writeback_latch.rg1+1)].value = cpu->writeback_latch.buffer;
-            if(cpu->regs[atoi(cpu->writeback_latch.rg1+1)].is_writing > 0){
-                cpu->regs[atoi(cpu->writeback_latch.rg1+1)].is_writing--;
-            if(cpu->regs[atoi(cpu->writeback_latch.rg1+1)].is_writing == 0){
-                cpu->regs[atoi(cpu->writeback_latch.rg1+1)].freed_this_cycle = 1;
-                strcpy(cpu->freedit,cpu->writeback_latch.rg1);
-            }
-        }
-        }
-        return(0);
-    }
-    else if(cpu->writeback_latch.halt_triggered==1){
-        cpu->writeback_latch.halt_triggered = 0;
-        return(0);
     }
 }
+
+void writeback3_unit(CPU* cpu){
+    // if(cpu->writeback_latch.has_inst == 1 && cpu->writeback_latch.halt_triggered==0){
+    //     if (print_pipeline != NULL){ // The print statement to print logs
+    //         if(atoi(print_pipeline) == 1){
+    //             printf("WB             : %s",cpu->instructions[cpu->writeback_latch.pc]);
+    //         }
+    //     }
+    //     cpu->executed_instruction++;
+    //     if(strcmp(cpu->writeback_latch.opcode,"ret") == 0){
+    //         cpu->writeback_latch.has_inst = 0;
+    //         return(1);
+    //     }
+    //     else if(strcmp(cpu->writeback_latch.opcode,"st") == 0){
+    //         return(0);
+    //     }
+    //     if(strcmp(cpu->writeback_latch.opcode,"bez") == 0 || strcmp(cpu->writeback_latch.opcode,"bgez") == 0 || strcmp(cpu->writeback_latch.opcode,"blez") == 0 | strcmp(cpu->writeback_latch.opcode,"bgtz") == 0 || strcmp(cpu->writeback_latch.opcode,"bltz") == 0){}
+    //     else{
+    //         cpu->regs[atoi(cpu->writeback_latch.rg1+1)].value = cpu->writeback_latch.buffer;
+    //         if(cpu->regs[atoi(cpu->writeback_latch.rg1+1)].is_writing > 0){
+    //             cpu->regs[atoi(cpu->writeback_latch.rg1+1)].is_writing--;
+    //         if(cpu->regs[atoi(cpu->writeback_latch.rg1+1)].is_writing == 0){
+    //             cpu->regs[atoi(cpu->writeback_latch.rg1+1)].freed_this_cycle = 1;
+    //             strcpy(cpu->freedit,cpu->writeback_latch.rg1);
+    //         }
+    //     }
+    //     }
+    //     return(0);
+    // }
+    // else if(cpu->writeback_latch.halt_triggered==1){
+    //     cpu->writeback_latch.halt_triggered = 0;
+    //     return(0);
+    // }
+    if (print_pipeline != NULL){ // The print statement to print logs
+        if(atoi(print_pipeline) == 1){
+            printf("| WB   : \t",);
+        }
+    }
+}
+
+void writeback2_unit(CPU* cpu){
+    if (print_pipeline != NULL){ // The print statement to print logs
+        if(atoi(print_pipeline) == 1){
+            printf("| WB   : \t",);
+        }
+    }
+}
+
+
+void writeback1_unit(CPU* cpu){
+    if (print_pipeline != NULL){ // The print statement to print logs
+        if(atoi(print_pipeline) == 1){
+            printf("| WB   : \n",);
+        }
+    }
+}
+
 
 void memory2_unit(CPU* cpu){
     if(cpu->memory2_latch.has_inst == 1 && cpu->memory2_latch.halt_triggered==0){
@@ -1459,10 +1508,63 @@ void  register_read_unit(CPU* cpu){
     }
 }
 
+void issue_unit(CPU* cpu){
+    // Read from the Reserve Station
+    if(cpu->reserve_count >=1){
+        cpu->reserve_count--;
+        cpu->adder_latch = cpu->reserve_station[cpu->reserve_count];
+    }
+    if (print_pipeline != NULL){ // The print statement to print logs
+        if(atoi(print_pipeline) == 1){
+             printf("IS: ");
+            for(int i=0;i<=cpu->reserve_count;i++){;
+                if(strcmp(cpu->reserve_station[i].opcode,"none")!=0){
+                    printf("%d %s %s %s %s | ",i,cpu->reserve_station[i].opcode,cpu->reserve_station[i].rg1,cpu->reserve_station[i].or1,cpu->reserve_station[i].or2);
+                }
+            //     printf("%s %s | ",cpu->reserve_station[i].instAddr,cpu->reserve_station[i].opcode);
+            }
+            printf("\n");
+        }
+    }
+}
+
+void instruction_rename_unit(CPU* cpu){
+    if(cpu->instruction_rename_latch.has_inst == 1 && cpu->instruction_rename_latch.halt_triggered==0){
+        if(strcmp(cpu->instructions[cpu->instruction_rename_latch.pc],"")  == 0){
+            // cpu->register_read_latch = cpu->instruction_rename_latch;
+            // Nothing to store in Reverse Station
+            return;
+        }
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("IR             : %s",cpu->instructions[cpu->instruction_rename_latch.pc]);
+            }
+        }
+        if(strcmp(cpu->instruction_rename_latch.opcode,"ret") == 0){
+            cpu->reserve_station[cpu->reserve_count] = cpu->instruction_rename_latch;
+            cpu->register_read_latch = cpu->instruction_rename_latch;
+            cpu->reserve_count++;
+            // Save ret in Reverse Station
+            // cpu->register_read_latch = cpu->instruction_rename_latch;
+            return;
+        }
+        cpu->reserve_station[cpu->reserve_count] = cpu->instruction_rename_latch;
+        cpu->register_read_latch = cpu->instruction_rename_latch;
+        cpu->reserve_count++;
+    }
+    else if (cpu->instruction_rename_latch.has_inst == 1 && cpu->instruction_rename_latch.halt_triggered==1){
+        if (print_pipeline != NULL){ // The print statement to print logs
+            if(atoi(print_pipeline) == 1){
+                printf("IR             : %s",cpu->instructions[cpu->instruction_rename_latch.pc]);
+            }
+        }
+    }
+}
+
 void analysis_unit(CPU* cpu){
     if(cpu->analysis_latch.has_inst == 1 && cpu->analysis_latch.halt_triggered==0){
         if(strcmp(cpu->instructions[cpu->analysis_latch.pc],"") == 0){
-            cpu->register_read_latch = cpu->analysis_latch;
+            cpu->instruction_rename_latch = cpu->analysis_latch;
             return;
         }
         if (print_pipeline != NULL){ // The print statement to print logs
@@ -1471,10 +1573,10 @@ void analysis_unit(CPU* cpu){
             }
         }
         if(strcmp(cpu->analysis_latch.opcode,"ret") == 0){
-            cpu->register_read_latch=cpu->analysis_latch;
+            cpu->instruction_rename_latch=cpu->analysis_latch;
             return;
         }
-        cpu->register_read_latch=cpu->analysis_latch;
+        cpu->instruction_rename_latch=cpu->analysis_latch;
     }
     else if(cpu->analysis_latch.has_inst == 1 && cpu->analysis_latch.halt_triggered==1){
         if (print_pipeline != NULL){ // The print statement to print logs
@@ -1675,6 +1777,11 @@ void fetch_unit(CPU* cpu){
     }
 }
 
+/*
+ *  Clean the pIpelIne of forwarding at end of cycle :P
+ */
+
+
 void clear_forwarding(CPU* cpu){
     strcpy(cpu->add_reg,"NULL");
     strcpy(cpu->mul_reg,"NULL");
@@ -1684,5 +1791,20 @@ void clear_forwarding(CPU* cpu){
     strcpy(cpu->freedit,"NULL");
     for (int i=0; i<16; i++){
         cpu->regs[i].freed_this_cycle = 0;
+    }
+}
+
+void reserve_station_buff(CPU* cpu){
+    if (print_pipeline != NULL){ // The print statement to print logs
+        if(atoi(print_pipeline) == 1){
+             printf("------------ Reserve Station ----------\n");
+            for(int i=0;i<=cpu->reserve_count-1;i++){;
+                if(strcmp(cpu->reserve_station[i].opcode,"none")!=0){
+                    printf("| %d %s %s %s %s ",i,cpu->reserve_station[i].opcode,cpu->reserve_station[i].rg1,cpu->reserve_station[i].or1,cpu->reserve_station[i].or2);
+                }
+            //     printf("%s %s | ",cpu->reserve_station[i].instAddr,cpu->reserve_station[i].opcode);
+            }
+            printf("\n");
+        }
     }
 }
