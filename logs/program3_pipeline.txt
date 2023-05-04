@@ -1017,7 +1017,7 @@ Clock Cycle #: 26
 | ROB3 [dest: 11, result: 85048, (e: 0, completed: 1)]
 | ROB4 [dest: 5, result: -103, (e: 0, completed: 1)]
 | ROB5 [dest: 4, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
@@ -1033,7 +1033,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 27
 | RE   : 0036: update rd R8(238)         	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   : 0040 sub: update ROB2           	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0040 sub: update ROB2           	| WB   : 0056: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0052: sub ROB5 5621 2 imm()     	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -1096,7 +1096,7 @@ Clock Cycle #: 28
 | ROB4 [dest: 5, result: -103, (e: 0, completed: 1)] <- head
 | ROB5 [dest: 4, result: 5619, (e: 0, completed: 1)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 1)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -1111,7 +1111,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 29
 | RE   : 0048: update rd R5(-103)        	| RE   : 0052: update rd R4(5619)        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0060: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0064: bltz 5329   imm(#124)     	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -1127,7 +1127,7 @@ Clock Cycle #: 29
 |0076: set ROB3   imm(#10024)
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: 5, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 12, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 15, result: -1, (e: 0, completed: 0)]
@@ -1147,9 +1147,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 30
-| RE   : 0056: update rd No register update 	| RE   : 0060: update rd No register update 
+| RE   : 0056: No register update        	| RE   : 0060: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0064: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0068: add ROB1 2  imm(#4)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 : 0072: div ROB2 238  imm(#240)   	| MEM2 :                                 |
@@ -1185,7 +1185,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 31
-| RE   : 0064: update rd No register update 	| RE   :                                 
+| RE   : 0064: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0068 add: update ROB1           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0076: set ROB3   imm(#10024)    	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -1551,7 +1551,7 @@ Clock Cycle #: 40
 | ROB1 [dest: 0, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 14, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 12, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -1569,7 +1569,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 41
 | RE   : 0096: update rd R8(116)         	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0112: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0100: add ROB1 5621 116 imm()   	| Mul2 :                                 	| DIV3 :                                 	| MEM4 : 0104: ld ROB2   imm(#5564)      |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -1719,7 +1719,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 45
-| RE   : 0108: update rd R12(26)         	| RE   : 0112: update rd No register update 
+| RE   : 0108: update rd R12(26)         	| RE   : 0112: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0128 add: update ROB5           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -1928,7 +1928,7 @@ Clock Cycle #: 50
 |0160: sub ROB5 10024 116 imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 3, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -1948,9 +1948,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 51
-| RE   : 0140: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0140: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 : 0148: div ROB2 90 90 imm()      	| MEM4 : 0144: st 90   imm(#40532)       |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0152: st 2   imm(#49100)        |
@@ -1967,8 +1967,8 @@ Clock Cycle #: 51
 |0164: st 12 10024  imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 3, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: 11, result: -1, (e: 0, completed: 0)]
@@ -1987,9 +1987,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 52
-| RE   : 0144: update rd No register update 	| RE   :                                 
+| RE   : 0140: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   : 0148 div: update ROB2           	| WB   :                                 
+| WB   : 0144: No ROB update             	| WB   :                                 	| WB   : 0148 div: update ROB2           	| WB   :                                 
 | Add  : 0160: sub ROB5 10024 116 imm()  	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 : 0152: st 2   imm(#49100)        |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -2006,8 +2006,8 @@ Clock Cycle #: 52
 
 ------------ Reorder Buffer----------
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: 3, result: 1, (e: 0, completed: 1)] <- head
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB2 [dest: 3, result: 1, (e: 0, completed: 1)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: 11, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: 10, result: -1, (e: 0, completed: 0)]
@@ -2025,7 +2025,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 53
-| RE   : 0148: update rd R3(1)           	| RE   :                                 
+| RE   : 0144: No register update        	| RE   : 0148: update rd R3(1)           
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0160 sub: update ROB5           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 : 0152: st 2   imm(#49100)        |
@@ -2046,7 +2046,7 @@ Clock Cycle #: 53
 | ROB0 [dest: 13, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB4 [dest: 11, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: 10, result: 9908, (e: 0, completed: 1)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -2063,9 +2063,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 54
-| RE   : 0152: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0152: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0168: add ROB7 2 90 imm()       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 : 0156: div ROB4 1 90 imm()       	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0164: st 12 10024  imm()        |
@@ -2084,8 +2084,8 @@ Clock Cycle #: 54
 | ROB0 [dest: 13, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: 12, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: 11, result: -1, (e: 0, completed: 0)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: 11, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: 10, result: 9908, (e: 0, completed: 1)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: 12, result: -1, (e: 0, completed: 0)]
@@ -2101,7 +2101,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 55
-| RE   :                                 	| RE   :                                 
+| RE   : 0152: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0168 add: update ROB7           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0172: sub ROB0 11462  imm(#152) 	| Mul2 :                                 	| DIV3 : 0156: div ROB4 1 90 imm()       	| MEM4 :                                 |
@@ -2163,7 +2163,7 @@ Clock Cycle #: 56
 | ROB3 [dest: 5, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: 11, result: 0, (e: 0, completed: 1)] <- head & tail
 | ROB5 [dest: 10, result: 9908, (e: 0, completed: 1)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: 12, result: 92, (e: 0, completed: 1)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
@@ -2179,7 +2179,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 57
 | RE   : 0156: update rd R11(0)          	| RE   : 0160: update rd R10(9908)       
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   : 0176 sub: update ROB1           	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0176 sub: update ROB1           	| WB   : 0164: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 : 0180: mul ROB2 2 90 imm()       	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -2212,7 +2212,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 58
-| RE   : 0164: update rd No register update 	| RE   : 0168: update rd R12(92)         
+| RE   : 0164: No register update        	| RE   : 0168: update rd R12(92)         
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0184: sub ROB3 6  imm(#5)       	| Mul2 : 0180: mul ROB2 2 90 imm()       	| DIV3 :                                 	| MEM4 :                                 |
@@ -2270,7 +2270,7 @@ Clock Cycle #: 59
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 4, result: 180, (e: 0, completed: 1)] <- head
 | ROB3 [dest: 5, result: 1, (e: 0, completed: 1)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -2288,7 +2288,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 60
 | RE   : 0180: update rd R4(180)         	| RE   : 0184: update rd R5(1)           
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0188: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -2323,7 +2323,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 61
-| RE   : 0188: update rd No register update 	| RE   :                                 
+| RE   : 0188: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -2417,7 +2417,7 @@ Clock Cycle #: 63
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
 
@@ -2432,9 +2432,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 64
-| RE   : 0196: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0196: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -2454,8 +2454,8 @@ Clock Cycle #: 64
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
@@ -2469,7 +2469,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 65
-| RE   :                                 	| RE   :                                 
+| RE   : 0196: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -2603,7 +2603,7 @@ Clock Cycle #: 68
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: 5, result: -4, (e: 0, completed: 1)] <- head
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -2616,9 +2616,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 69
-| RE   : 0184: update rd R5(-4)          	| RE   : 0188: update rd No register update 
+| RE   : 0184: update rd R5(-4)          	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0188: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -2633,14 +2633,14 @@ Clock Cycle #: 69
 ------------ Reserve Station ----------
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -2653,7 +2653,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 70
-| RE   :                                 	| RE   :                                 
+| RE   : 0188: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -2747,7 +2747,7 @@ Clock Cycle #: 72
 |0204: ld ROB2 ROB1  imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB1 [dest: 11, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 6, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
@@ -2767,9 +2767,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 73
-| RE   : 0196: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0196: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0200: set ROB1   imm(#8764)     	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -2786,8 +2786,8 @@ Clock Cycle #: 73
 |0208: add ROB3 ROB2 ROB2 imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: 11, result: -1, (e: 0, completed: 0)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB1 [dest: 11, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 6, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
@@ -2806,7 +2806,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 74
-| RE   :                                 	| RE   :                                 
+| RE   : 0196: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0200 set: update ROB1           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -3221,7 +3221,7 @@ Clock Cycle #: 84
 |0248: div ROB5 91 89 imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB1 [dest: 7, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 5, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 8, result: -1, (e: 0, completed: 0)]
@@ -3241,9 +3241,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 85
-| RE   : 0228: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0228: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0244: sub ROB4 89 238 imm()     	| Mul2 : 0236: mul ROB2 91 434 imm()     	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 : 0232: div ROB1 119 434 imm()    	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0240: ld ROB3   imm(#13608)     |
@@ -3259,8 +3259,8 @@ Clock Cycle #: 85
 |0252: sub ROB6 89 434 imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: 7, result: -1, (e: 0, completed: 0)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB1 [dest: 7, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 5, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 8, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: 14, result: -1, (e: 0, completed: 0)]
@@ -3279,7 +3279,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 86
-| RE   :                                 	| RE   :                                 
+| RE   : 0228: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0244 sub: update ROB4           	| WB   : 0236 mul: update ROB2           	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 : 0232: div ROB1 119 434 imm()    	| MEM4 :                                 |
@@ -4060,7 +4060,7 @@ Clock Cycle #: 106
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -4073,9 +4073,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 107
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -4086,6 +4086,43 @@ Clock Cycle #: 107
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5050] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -70] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 108
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -4109,45 +4146,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 108
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5050] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -70] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 109
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -4390,7 +4390,7 @@ Clock Cycle #: 115
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -4407,9 +4407,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 116
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -4420,6 +4420,43 @@ Clock Cycle #: 116
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5100] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -63] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 117
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -4443,45 +4480,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 117
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5100] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -63] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 118
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -4728,7 +4728,7 @@ Clock Cycle #: 124
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -4741,9 +4741,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 125
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -4754,6 +4754,43 @@ Clock Cycle #: 125
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5150] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -56] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 126
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -4777,45 +4814,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 126
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5150] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -56] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 127
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -5058,7 +5058,7 @@ Clock Cycle #: 133
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -5075,9 +5075,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 134
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -5088,6 +5088,43 @@ Clock Cycle #: 134
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5200] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -49] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 135
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -5111,45 +5148,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 135
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5200] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -49] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 136
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -5396,7 +5396,7 @@ Clock Cycle #: 142
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -5409,9 +5409,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 143
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -5422,6 +5422,43 @@ Clock Cycle #: 143
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5250] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -42] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 144
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -5445,45 +5482,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 144
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5250] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -42] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 145
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -5726,7 +5726,7 @@ Clock Cycle #: 151
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -5743,9 +5743,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 152
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -5756,6 +5756,43 @@ Clock Cycle #: 152
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5300] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -35] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 153
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -5779,45 +5816,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 153
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5300] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -35] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 154
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -6064,7 +6064,7 @@ Clock Cycle #: 160
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -6077,9 +6077,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 161
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -6090,6 +6090,43 @@ Clock Cycle #: 161
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5350] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -28] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 162
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -6113,45 +6150,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 162
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5350] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -28] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 163
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -6394,7 +6394,7 @@ Clock Cycle #: 169
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -6411,9 +6411,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 170
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -6424,6 +6424,43 @@ Clock Cycle #: 170
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5400] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -21] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 171
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -6447,45 +6484,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 171
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5400] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -21] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 172
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -6732,7 +6732,7 @@ Clock Cycle #: 178
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -6745,9 +6745,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 179
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -6758,6 +6758,43 @@ Clock Cycle #: 179
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5450] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -14] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 180
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -6781,45 +6818,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 180
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5450] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -14] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 181
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -7062,7 +7062,7 @@ Clock Cycle #: 187
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -7079,9 +7079,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 188
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -7092,6 +7092,43 @@ Clock Cycle #: 188
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5500] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -7] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 189
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -7115,45 +7152,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 189
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5500] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, -7] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 190
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -7400,7 +7400,7 @@ Clock Cycle #: 196
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -7413,9 +7413,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 197
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0324: bgez 43   imm(#312)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -7426,6 +7426,43 @@ Clock Cycle #: 197
 | IA   :                                 
 | ID   : 0312: add R2 R2 R7 imm()        
 | IF   : 0316 add R10 R10 #7             
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5550] | R3 [(1) -1, 39451] |
+| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, 0] | R11 [(1) -1, 43] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 198
+| RE   : 0320: No register update        	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0324: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
+| IA   : 0312: add R2 R2 R7 imm()        
+| ID   : 0316: add R10 R10  imm(#7)      
+| IF   : 0320 bgtz R10 #0332             
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -7449,45 +7486,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 198
-| RE   : 0324: update rd No register update 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   : 0312: add R2 R2 R7 imm()        
-| ID   : 0316: add R10 R10  imm(#7)      
-| IF   : 0320 bgtz R10 #0332             
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 21112] | R1 [(1) -1, 91] | R2 [(1) -1, 5550] | R3 [(1) -1, 39451] |
-| R4 [(1) -1, 18088] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 7] | R9 [(1) -1, 87] | R10 [(1) -1, 0] | R11 [(1) -1, 43] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 199
-| RE   :                                 	| RE   :                                 
+| RE   : 0324: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -7729,7 +7729,7 @@ Clock Cycle #: 205
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -7746,9 +7746,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 206
-| RE   : 0320: update rd No register update 	| RE   :                                 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0320: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -7766,8 +7766,8 @@ Clock Cycle #: 206
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- head & tail
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -7783,7 +7783,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 207
-| RE   :                                 	| RE   :                                 
+| RE   : 0320: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -8188,7 +8188,7 @@ Clock Cycle #: 217
 | ROB0 [dest: 1, result: 6072, (e: 0, completed: 1)] <- head
 | ROB1 [dest: 8, result: 6, (e: 0, completed: 1)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -8207,7 +8207,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 218
 | RE   : 0348: update rd R1(6072)        	| RE   : 0352: update rd R8(6)           
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0360: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -8338,7 +8338,7 @@ Clock Cycle #: 221
 ------------ Reorder Buffer----------
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 1)]
 | ROB4 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: 0, result: -1, (e: 0, completed: 0)]
@@ -8356,9 +8356,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 222
-| RE   : 0356: update rd No register update 	| RE   : 0360: update rd No register update 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   : 0340 add: update ROB4           	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0356: No ROB update             	| WB   : 0340 add: update ROB4           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 : 0344: mul ROB5 6  imm(#4)       	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -8377,9 +8377,9 @@ Clock Cycle #: 222
 ------------ Reorder Buffer----------
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: 4, result: 28, (e: 0, completed: 1)] <- head
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB4 [dest: 4, result: 28, (e: 0, completed: 1)]
 | ROB5 [dest: 0, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: 1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: 8, result: -1, (e: 0, completed: 0)]
@@ -8395,7 +8395,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 223
-| RE   : 0340: update rd R4(28)          	| RE   :                                 
+| RE   : 0356: No register update        	| RE   : 0360: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 : 0344: mul ROB5 6  imm(#4)       	| DIV3 :                                 	| MEM4 :                                 |
@@ -8418,15 +8418,15 @@ Clock Cycle #: 223
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: 0, result: -1, (e: 0, completed: 0)] <- head
+| ROB4 [dest: 4, result: 28, (e: 0, completed: 1)] <- head
+| ROB5 [dest: 0, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: 1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: 8, result: -1, (e: 0, completed: 0)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
 | R0 [(0) 5, 28] | R1 [(0) 6, 6072] | R2 [(1) -1, 5600] | R3 [(1) -1, 22] |
-| R4 [(1) -1, 28] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R4 [(0) 4, 29] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
 | R8 [(0) 7, 6] | R9 [(1) -1, 87] | R10 [(1) -1, 7] | R11 [(1) -1, 11644] |
 | R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
 --------------------------------------------------------------------------------
@@ -8434,7 +8434,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 224
-| RE   :                                 	| RE   :                                 
+| RE   : 0340: update rd R4(28)          	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   : 0344 mul: update ROB5           	| WB   :                                 	| WB   :                                 
 | Add  : 0352: sub ROB7 6  imm(#1)       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -8563,7 +8563,7 @@ Clock Cycle #: 227
 
 ------------ Reorder Buffer----------
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -8584,7 +8584,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 228
 | RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0360: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0356: st 28 6068  imm()         |
@@ -8675,7 +8675,7 @@ Clock Cycle #: 230
 |0344: mul ROB3 5  imm(#4)
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 1)]
 | ROB2 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 0, result: -1, (e: 0, completed: 0)]
@@ -8695,9 +8695,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 231
-| RE   : 0356: update rd No register update 	| RE   : 0360: update rd No register update 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0356: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0340: add ROB2 22 5 imm()       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -8713,9 +8713,9 @@ Clock Cycle #: 231
 |0348: add ROB4 6044 ROB3 imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: 4, result: -1, (e: 0, completed: 0)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB2 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 0, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: 1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
@@ -8733,7 +8733,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 232
-| RE   :                                 	| RE   :                                 
+| RE   : 0356: No register update        	| RE   : 0360: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0340 add: update ROB2           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -8946,7 +8946,7 @@ Clock Cycle #: 237
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -8961,7 +8961,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 238
 | RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0360: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0356: st 27 6064  imm()         |
@@ -9058,7 +9058,7 @@ Clock Cycle #: 240
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 1)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
@@ -9072,9 +9072,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 241
-| RE   : 0356: update rd No register update 	| RE   : 0360: update rd No register update 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0356: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0340: add ROB0 22 4 imm()       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -9090,14 +9090,14 @@ Clock Cycle #: 241
 |0348: add ROB2 6044 ROB1 imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: 4, result: -1, (e: 0, completed: 0)] <- head
+| ROB0 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: 0, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: 1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
 R# [(status 0=invalid, 1=valid), tag, value] 
@@ -9110,7 +9110,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 242
-| RE   :                                 	| RE   :                                 
+| RE   : 0356: No register update        	| RE   : 0360: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0340 add: update ROB0           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -9321,7 +9321,7 @@ Clock Cycle #: 247
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
 
@@ -9338,7 +9338,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 248
 | RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0360: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0356: st 26 6060  imm()         |
@@ -9433,7 +9433,7 @@ Clock Cycle #: 250
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 1)]
 | ROB6 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: 0, result: -1, (e: 0, completed: 0)]
@@ -9449,9 +9449,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 251
-| RE   : 0356: update rd No register update 	| RE   : 0360: update rd No register update 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0356: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0340: add ROB6 22 3 imm()       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -9471,9 +9471,9 @@ Clock Cycle #: 251
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: 4, result: -1, (e: 0, completed: 0)] <- head
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB6 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: 0, result: -1, (e: 0, completed: 0)]
 
 ------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
@@ -9487,7 +9487,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 252
-| RE   :                                 	| RE   :                                 
+| RE   : 0356: No register update        	| RE   : 0360: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0340 add: update ROB6           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -9696,7 +9696,7 @@ Clock Cycle #: 257
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -9715,7 +9715,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 258
 | RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0360: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0356: st 25 6056  imm()         |
@@ -9808,7 +9808,7 @@ Clock Cycle #: 260
 ------------ Reorder Buffer----------
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 1)]
 | ROB4 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: 0, result: -1, (e: 0, completed: 0)]
@@ -9826,9 +9826,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 261
-| RE   : 0356: update rd No register update 	| RE   : 0360: update rd No register update 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0356: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0340: add ROB4 22 2 imm()       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -9846,9 +9846,9 @@ Clock Cycle #: 261
 ------------ Reorder Buffer----------
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: 4, result: -1, (e: 0, completed: 0)] <- head
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB4 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: 0, result: -1, (e: 0, completed: 0)]
 | ROB6 [dest: 1, result: -1, (e: 0, completed: 0)]
 | ROB7 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
@@ -9864,7 +9864,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 262
-| RE   :                                 	| RE   :                                 
+| RE   : 0356: No register update        	| RE   : 0360: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0340 add: update ROB4           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -10071,7 +10071,7 @@ Clock Cycle #: 267
 
 ------------ Reorder Buffer----------
 | ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB2 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
 | ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
@@ -10092,7 +10092,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 Clock Cycle #: 268
 | RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0360: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 : 0356: st 24 6052  imm()         |
@@ -10183,7 +10183,7 @@ Clock Cycle #: 270
 |0344: mul ROB3 1  imm(#4)
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
 | ROB1 [dest: -1, result: -1, (e: 0, completed: 1)]
 | ROB2 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 0, result: -1, (e: 0, completed: 0)]
@@ -10203,9 +10203,9 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 271
-| RE   : 0356: update rd No register update 	| RE   : 0360: update rd No register update 
+| RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0356: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  : 0340: add ROB2 22 1 imm()       	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -10221,9 +10221,9 @@ Clock Cycle #: 271
 |0348: add ROB4 6044 ROB3 imm()
 
 ------------ Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB2 [dest: 4, result: -1, (e: 0, completed: 0)] <- head
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)] <- head
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB2 [dest: 4, result: -1, (e: 0, completed: 0)]
 | ROB3 [dest: 0, result: -1, (e: 0, completed: 0)]
 | ROB4 [dest: 1, result: -1, (e: 0, completed: 0)]
 | ROB5 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
@@ -10241,7 +10241,7 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 ====================================================================
 Clock Cycle #: 272
-| RE   :                                 	| RE   :                                 
+| RE   : 0356: No register update        	| RE   : 0360: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   : 0340 add: update ROB2           	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -10406,9 +10406,6 @@ Clock Cycle #: 276
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | IS  0356: st 23 6048  imm() => MEM 1  | 	0360: bgtz 0   imm(#340) => Add  | 	
 | IR   : 0364: ret    imm()              
-| IA   :                                 
-| ID   :                                 
-| IF   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 |0364: ret    imm()
@@ -10444,9 +10441,40 @@ Clock Cycle #: 277
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | IS  0364: ret    imm() => Add  | 	
 | IR   :                                 
-| IA   :                                 
-| ID   :                                 
-| IF   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 0)]
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 4] | R1 [(1) -1, 6048] | R2 [(1) -1, 5600] | R3 [(1) -1, 22] |
+| R4 [(1) -1, 23] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 0] | R9 [(1) -1, 87] | R10 [(1) -1, 7] | R11 [(1) -1, 11644] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 278
+| RE   :                                 	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0360: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  : 0364: ret    imm()              	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 : 0356: st 23 6048  imm()         |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -10470,47 +10498,10 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 278
-| RE   :                                 	| RE   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
-| Add  : 0364: ret    imm()              	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
-|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
-|                                               |                                               | DIV1 :                                 	| MEM2 : 0356: st 23 6048  imm()         |
-|                                               |                                               |                                               | MEM1 :                                 |
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| IS  
-| IR   :                                 
-| IA   :                                 
-| ID   :                                 
-| IF   :                                 
- ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
------------- Reserve Station ----------
-
------------- Reorder Buffer----------
-| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)]
-| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
-| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
-| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
-| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)]
-
------------- STATE OF ARCHITECTURAL REGISTER FILE ----------
-R# [(status 0=invalid, 1=valid), tag, value] 
-| R0 [(1) -1, 4] | R1 [(1) -1, 6048] | R2 [(1) -1, 5600] | R3 [(1) -1, 22] |
-| R4 [(1) -1, 23] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
-| R8 [(1) -1, 0] | R9 [(1) -1, 87] | R10 [(1) -1, 7] | R11 [(1) -1, 11644] |
-| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
---------------------------------------------------------------------------------
-
-
-====================================================================
 Clock Cycle #: 279
 | RE   :                                 	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
-| WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| WB   : 0364: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
 |                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 : 0356: st 23 6048  imm()         |
 |                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
@@ -10518,9 +10509,6 @@ Clock Cycle #: 279
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | IS  
 | IR   :                                 
-| IA   :                                 
-| ID   :                                 
-| IF   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -10555,9 +10543,40 @@ Clock Cycle #: 280
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | IS  
 | IR   :                                 
-| IA   :                                 
-| ID   :                                 
-| IF   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+------------ Reserve Station ----------
+
+------------ Reorder Buffer----------
+| ROB0 [dest: -1, result: -1, (e: 0, completed: 1)]
+| ROB1 [dest: -1, result: -1, (e: 0, completed: 0)] <- tail
+| ROB2 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB3 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB4 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB5 [dest: -1, result: -1, (e: 0, completed: 0)]
+| ROB6 [dest: -1, result: -1, (e: 0, completed: 0)] <- head
+| ROB7 [dest: -1, result: -1, (e: 0, completed: 1)]
+
+------------ STATE OF ARCHITECTURAL REGISTER FILE ----------
+R# [(status 0=invalid, 1=valid), tag, value] 
+| R0 [(1) -1, 4] | R1 [(1) -1, 6048] | R2 [(1) -1, 5600] | R3 [(1) -1, 22] |
+| R4 [(1) -1, 23] | R5 [(1) -1, 39494] | R6 [(1) -1, 6044] | R7 [(1) -1, 50] |
+| R8 [(1) -1, 0] | R9 [(1) -1, 87] | R10 [(1) -1, 7] | R11 [(1) -1, 11644] |
+| R12 [(1) -1, 89] | R13 [(1) -1, 43] | R14 [(1) -1, 5800] | R15 [(1) -1, 123] |
+--------------------------------------------------------------------------------
+
+
+====================================================================
+Clock Cycle #: 281
+| RE   :                                 	| RE   :                                 
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| WB   : 0356: No ROB update             	| WB   :                                 	| WB   :                                 	| WB   :                                 
+| Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
+|                                               | Mul1 :                                 	| DIV2 :                                 	| MEM3 :                                 |
+|                                               |                                               | DIV1 :                                 	| MEM2 :                                 |
+|                                               |                                               |                                               | MEM1 :                                 |
+ ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
+| IS  
+| IR   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -10581,8 +10600,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 281
-| RE   : 0356: update rd No register update 	| RE   : 0360: update rd No register update 
+Clock Cycle #: 282
+| RE   : 0356: No register update        	| RE   : 0360: No register update        
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | WB   :                                 	| WB   :                                 	| WB   :                                 	| WB   :                                 
 | Add  :                                 	| Mul2 :                                 	| DIV3 :                                 	| MEM4 :                                 |
@@ -10592,9 +10611,6 @@ Clock Cycle #: 281
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 | IS  
 | IR   :                                 
-| IA   :                                 
-| ID   :                                 
-| IF   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
@@ -10618,8 +10634,8 @@ R# [(status 0=invalid, 1=valid), tag, value]
 
 
 ====================================================================
-Clock Cycle #: 282
-| RE   : 0364: update rd No register update 	| RE   :                                 
+Clock Cycle #: 283
+| RE   : 0364: No register update        	| RE   :                                 
  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  ---  
 ------------ Reserve Station ----------
 
